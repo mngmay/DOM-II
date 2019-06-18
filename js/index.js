@@ -4,6 +4,7 @@
 const nav = document.querySelector('nav');
 nav.addEventListener('click', event => {
     event.target.style.fontSize = "2rem";
+    event.preventDefault();
 })
 
 nav.addEventListener('mouseout', event => {
@@ -21,8 +22,12 @@ logo.addEventListener('mouseover', event => {
 
 logo.addEventListener('mouseout', event => {
     event.target.style.color = 'black';
+    logo.textContent ='Fun Bus';
 })
 
+logo.addEventListener('click', () => {
+    logo.textContent = "Muwhaha";
+});
 
 //adds a border upon imgs loading 
 
@@ -75,9 +80,21 @@ hTwo.forEach(header => header.addEventListener('copy', event => {
     event.preventDefault();
 }))
 
+// Stops propagation of the child 
 
+const section = document.querySelector('.content-section');
+const text = document.querySelector('.text-content');
 
+section.addEventListener('mouseover', event => {
+    event.target.style.background = "pink";
+    console.log("parent trigger")
+    event.stopPropagation();
+})
 
+text.addEventListener('mouseover', event => {
+    event.target.style.background = "red";
+    console.log("child trigger");
+})
 
 //Debugging code with Tommy for his project - inverts images on hover
 // const images = document.querySelectorAll('img');
