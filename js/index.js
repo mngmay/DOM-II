@@ -2,7 +2,7 @@
 
 //nav enlarges text size on double click, goes back to normal font size when mousing out
 const nav = document.querySelector('nav');
-nav.addEventListener('dblclick', event => {
+nav.addEventListener('click', event => {
     event.target.style.fontSize = "2rem";
 })
 
@@ -27,14 +27,55 @@ logo.addEventListener('mouseout', event => {
 //adds a border upon imgs loading 
 
 const imgs = document.querySelectorAll('img');
-imgs.forEach(img => img.addEventListener('load', function(event){
+
+imgs.forEach(img => img.addEventListener('load', event => {
+    event.target.style.border = '2px dashed blue';
+}))
+
+imgs.forEach(img => img.addEventListener('dragstart', event => {
     event.target.style.border = '2px solid red';
 }))
 
-// const navBtn = document.querySelectorAll('button');
-// navBtn.forEach(item => item.addEventListener('mouseover', event => {
-//     event.target.style.color = 'blue';
-// }))
+imgs.forEach(img => img.addEventListener('drag', event => {
+    event.target.style.width = '50%';
+}))
+
+imgs.forEach(img => img.addEventListener('dragend', event => {
+    event.target.style.width = '100%';
+    event.target.style.border = 'none';
+}))
+
+//button changes border radius and font size on double click and reverts when mousing out
+
+const btn = document.querySelectorAll('.btn');
+btn.forEach(button => button.addEventListener('dblclick', event => {
+    event.target.style.borderRadius = "200px";
+    event.target.style.fontSize = "3rem";
+}))
+
+btn.forEach(button => button.addEventListener('mouseout', event => {
+    event.target.style.borderRadius = "15px";
+    event.target.style.fontSize = "1.6rem";
+}))
+
+//paragraphs disappear if you release a mouseclick over
+const paragraph = document.querySelectorAll('p');
+paragraph.forEach(par => par.addEventListener('mouseup', event => {
+    event.target.style.opacity = 0;
+}))
+
+paragraph.forEach(par => par.addEventListener('mouseover', event => {
+    event.target.style.opacity = 1;
+}))
+
+//prevents copying of h2 headers
+
+const hTwo = document.querySelectorAll('h2');
+hTwo.forEach(header => header.addEventListener('copy', event => {
+    event.preventDefault();
+}))
+
+
 
 
 
